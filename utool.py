@@ -1,3 +1,17 @@
+#
+#   @file: utool.py
+#
+#   @description:
+#       UEFI tool to assist in finding protocol definitions.
+#
+#   @usage:
+#       python2 ./utool.py [partial-guid]
+#
+#   @examples:
+#       utool.py 5a7e40176cafe8 ./path/to/file-d08e7171-89fb-4b7d-9ba9-ca263319ac35/section1.pe
+#       utool.py 5a7e40176cafe8 ./path/to/file-408edcec-cf6d-477c-a5a8-b4844e3de281/section0.pe
+#
+
 import uefininja
 import fnmatch
 import sys
@@ -23,10 +37,6 @@ def do_search(cp, sp):
 search_pattern = sys.argv[1]
 if len(sys.argv) == 3:
     cpath = sys.argv[2]
-else:
-    cpath = None
-
-if cpath != None:
     do_search(cpath, search_pattern)
 else:
-    do_search(os.getcwd())
+    do_search(os.getcwd(), search_pattern)
