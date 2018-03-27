@@ -14,3 +14,9 @@ class AnalysisState:
 
     def get_binary_view(self):
         return self._bv
+
+    def set_function(self, func):
+        self._function = func
+
+    def get_function(self):
+        return self._function

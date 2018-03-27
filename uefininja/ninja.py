@@ -1,6 +1,7 @@
 from binaryninja import *
 import binascii
-import state
+
+from . import state
 
 def open(path, view_type = 'PE'):
     bv = binaryview.BinaryViewType[view_type].open(path)
@@ -40,6 +41,7 @@ def search_calls(st, proc, patt):
                     if call_target.operation == LowLevelILOperation.LLIL_LOAD:
                         load_addr = call_target.operands[0]
                         if load_addr.operation == LowLevelILOperation.LLIL_ADD:
+                            st.set_function(func)
                             proc(st, instr, load_addr)
 
 def try_get_register_value(instr, reg):
